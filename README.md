@@ -1,23 +1,44 @@
 # Maven Market Data analysis - (Interactive multi page dashboard creation using Power BI)
 
-## Project KPIs
 
-1 Revenue Trend on monthly, quaterly, weekly.
-2 KPIs for Revenue, Profit, Orders, Returns, Unique Customer, top selling product etc.
-3 KPIs based on monthly data.
-4 Compare Revenue, orders, profits, to the target.
+---
 
-## project insites - 
+## 🚀 Key Features
 
-Sales & Revenue:
+- 📅 Monthly, Quarterly, and Yearly Sales Trends
+- 💰 Total Sales, Profit, Quantity, and Discount Metrics
+- 🧍 Customer Segmentation & Repeat Rate
+- 📦 Top Products & Categories by Revenue
+- 🌍 Region-wise Performance Breakdown
+- 📈 Dynamic filters & slicers for interactivity
 
-Total revenue: $1.76M | Monthly revenue: $120.2K (+5.6%) | Profit: $1.05M
-Strong revenue growth with steady month-over-month increases.
-Product Performance:
+---
 
-Top Product: Mom’s Roasted Chicken (225 orders).
-High Returns: Dollar Monthly Sports Magazine — signals quality concerns.
-Overachiever: Hilltop Silky Smooth Hair Conditioner exceeded both order and revenue targets.
+## 🧠 Key Insights
+
+- West Region consistently performed best across years
+- Office Supplies were the top-selling product category
+- Discount strategy needed review as high discounts didn’t always lead to higher sales
+- Repeat customers contributed significantly to revenue growth
+
+---
+
+## 🔍 DAX Measures Used
+
+```DAX
+Total Sales = SUM(Orders[Sales])
+
+Total Profit = SUM(Orders[Profit])
+
+Profit Margin = DIVIDE([Total Profit], [Total Sales])
+
+Top Customer = RANKX(ALL(Orders[Customer Name]), [Total Sales], , DESC)
+
+Sales YoY Growth = 
+VAR CurrentYear = YEAR(MAX(Orders[Order Date]))
+VAR PrevYearSales = CALCULATE([Total Sales], YEAR(Orders[Order Date]) = CurrentYear - 1)
+RETURN DIVIDE([Total Sales] - PrevYearSales, PrevYearSales)
+
 Customer Insights:
 
 Top Customer: Ida Rodriguez — $2.24K revenue from 290 orders.
