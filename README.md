@@ -26,7 +26,7 @@
 ## 🔍 DAX Measures Used
 
 ```DAX
-Total Sales = SUM(Orders[Sales])
+# Total Sales = SUM(Orders[Sales])
 
 Total Profit = SUM(Orders[Profit])
 
